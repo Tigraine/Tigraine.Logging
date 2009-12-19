@@ -1,4 +1,4 @@
-namespace Tigraine.Logging
+namespace Tigraine.Logging.ObjectRenderers
 {
     public class DefaultObjectRenderer : IObjectRenderer
     {

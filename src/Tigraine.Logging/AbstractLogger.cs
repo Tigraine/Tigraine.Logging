@@ -2,8 +2,9 @@ namespace Tigraine.Logging
 {
     using System;
     using System.Collections.Generic;
+    using ObjectRenderers;
 
-    public abstract class AbstractLogger
+    public abstract class AbstractLogger : ILogger
     {
         private readonly LogLevel logLevel;
 
@@ -68,6 +69,16 @@ namespace Tigraine.Logging
                 renderers.Add(type, renderer);
             }
             return FindSuitableObjectRenderer(baseType);
+        }
+
+        private void AddObjectRenderer(Type targetType, IObjectRenderer renderer)
+        {
+            renderers.Add(targetType, renderer);
+        }
+
+        private void ClearObjectRenderers()
+        {
+            renderers.Clear();
         }
     }
 }
