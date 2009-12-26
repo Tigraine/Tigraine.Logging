@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="AbstractLogger.cs" />
     <Compile Include="ILogger.cs" />
+    <Compile Include="ObjectRenderers\CompositeRenderer.cs" />
     <Compile Include="ObjectRenderers\DefaultObjectRenderer.cs" />
     <Compile Include="IObjectRenderer.cs" />
     <Compile Include="Loggers\ConsoleLogger.cs" />

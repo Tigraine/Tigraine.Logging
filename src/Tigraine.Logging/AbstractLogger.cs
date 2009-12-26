@@ -89,6 +89,11 @@ namespace Tigraine.Logging
             }
         }
 
+        public void AddObjectRenderer<T>(IObjectRenderer renderer)
+        {
+            AddObjectRenderer(typeof(T), renderer);
+        }
+
         public void RemoveObjectRendererForType(Type targetType)
         {
             lock (lockObject)

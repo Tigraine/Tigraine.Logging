@@ -10,7 +10,7 @@ namespace Tigraine.Logging.Tests
         {
             var compositeRenderer = new CompositeRenderer<TestClass>(p => p.Hello + " " + p.World + " " + p.Age);
             var consoleLogger = new ConsoleLogger(LogLevel.Debug);
-            consoleLogger.AddObjectRenderer(typeof(TestClass), compositeRenderer);
+            consoleLogger.AddObjectRenderer<TestClass>(compositeRenderer);
         }
 
         internal class TestClass
