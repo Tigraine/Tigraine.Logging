@@ -8,7 +8,7 @@ namespace Tigraine.Logging
     {
         private readonly LogLevel logLevel;
 
-        public AbstractLogger(LogLevel logLevel)
+        protected AbstractLogger(LogLevel logLevel)
         {
             this.logLevel = logLevel;
         }
@@ -56,6 +56,7 @@ namespace Tigraine.Logging
             return string.Format(message, renderedParameters);
         }
 
+        private readonly object lockObject = new object();
         private IObjectRenderer FindSuitableObjectRenderer(Type type)
         {
             if (renderers.ContainsKey(type))
@@ -66,19 +67,36 @@ namespace Tigraine.Logging
             if (renderers.ContainsKey(baseType))
             {
                 var renderer = renderers[baseType];
-                renderers.Add(type, renderer);
+                lock (lockObject)
+                {
+                    renderers.Add(type, renderer);
+                }
             }
             return FindSuitableObjectRenderer(baseType);
         }
 
-        private void AddObjectRenderer(Type targetType, IObjectRenderer renderer)
+        public void AddObjectRenderer(Type targetType, IObjectRenderer renderer)
         {
-            renderers.Add(targetType, renderer);
+            lock(lockObject)
+            {
+                renderers.Add(targetType, renderer);
+            }
         }
 
-        private void ClearObjectRenderers()
+        public void RemoveObjectRendererForType(Type targetType)
         {
-            renderers.Clear();
+            lock (lockObject)
+            {
+                renderers.Remove(targetType);
+            }
+        }
+
+        public void ClearObjectRenderers()
+        {
+            lock (lockObject)
+            {
+                renderers.Clear();
+            }
         }
     }
 }
