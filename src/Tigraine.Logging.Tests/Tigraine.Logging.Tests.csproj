@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tigraine.Logging.Tests</RootNamespace>
     <AssemblyName>Tigraine.Logging.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -74,7 +74,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RecursiveObjectRendererLookup.cs" />
+    <Compile Include="CompositeRendererTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestLogger.cs" />
   </ItemGroup>
