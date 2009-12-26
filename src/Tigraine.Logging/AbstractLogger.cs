@@ -24,18 +24,21 @@ namespace Tigraine.Logging
             var msg = CreateMessage(message, parameters);
             WriteDebug(msg);
         }
+
         public void Information(string message, params object[] parameters)
         {
             if (logLevel > LogLevel.Information) return;
             var msg = CreateMessage(message, parameters);
             WriteInformation(msg);
         }
+
         public void Warning(string message, params object[] parameters)
         {
             if (logLevel > LogLevel.Warning) return;
             var msg = CreateMessage(message, parameters);
             WriteWarning(msg);
         }
+
         public void Error(string message, params object[] parameters)
         {
             if (logLevel > LogLevel.Error) return;
@@ -45,25 +48,28 @@ namespace Tigraine.Logging
 
         private readonly IDictionary<Type, IObjectRenderer> renderers = new Dictionary<Type, IObjectRenderer>();
         private readonly IObjectRenderer defaultObjectRenderer = new DefaultObjectRenderer();
+
         private string CreateMessage(string message, object[] parameters)
         {
             var renderedParameters = new string[parameters.Length];
-            for(var i = 0; i < parameters.Length; i++)
+            for (var i = 0; i < parameters.Length; i++)
             {
                 var renderer = FindSuitableObjectRenderer(parameters[i].GetType());
+                if (renderer == null) continue;
                 renderedParameters[i] = renderer.Render(parameters[i]);
             }
             return string.Format(message, renderedParameters);
         }
 
         private readonly object lockObject = new object();
+
         private IObjectRenderer FindSuitableObjectRenderer(Type type)
         {
             if (renderers.ContainsKey(type))
                 return renderers[type];
 
             var baseType = type.BaseType;
-            if (baseType == null) return defaultObjectRenderer;
+            if (baseType == null) return null;
             if (renderers.ContainsKey(baseType))
             {
                 var renderer = renderers[baseType];
@@ -77,7 +83,7 @@ namespace Tigraine.Logging
 
         public void AddObjectRenderer(Type targetType, IObjectRenderer renderer)
         {
-            lock(lockObject)
+            lock (lockObject)
             {
                 renderers.Add(targetType, renderer);
             }
