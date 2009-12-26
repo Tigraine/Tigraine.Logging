@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tigraine.Logging", "Tigraine.Logging\Tigraine.Logging.csproj", "{2544EA04-BBE8-4424-A90A-514F42533460}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tigraine.Logging.Tests", "Tigraine.Logging.Tests\Tigraine.Logging.Tests.csproj", "{53DF14C0-64F7-4CC7-BCA9-2C1973BF2230}"
