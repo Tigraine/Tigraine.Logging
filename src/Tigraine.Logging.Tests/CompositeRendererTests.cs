@@ -1,13 +1,12 @@
 namespace Tigraine.Logging.Tests
 {
-    using Loggers;
     using ObjectRenderers;
     using Xunit;
 
     public class CompositeRendererTests
     {
         [Fact]
-        public void WillUseBaseClassIfCurrentClassNotFound()
+        public void CompositeRendererCallsFuncToRender()
         {
             var compositeRenderer = new CompositeRenderer<TestClass>(p => p.Firstname + " " + p.Nickname + " " + p.Age);
             var testClass = new TestClass() {Firstname = "Daniel", Nickname = "Tigraine", Age = 24};
