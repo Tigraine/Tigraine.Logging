@@ -55,7 +55,6 @@ namespace Tigraine.Logging
             for (var i = 0; i < parameters.Length; i++)
             {
                 var renderer = FindSuitableObjectRenderer(parameters[i].GetType());
-                if (renderer == null) continue;
                 renderedParameters[i] = renderer.Render(parameters[i]);
             }
             return string.Format(message, renderedParameters);
@@ -69,7 +68,7 @@ namespace Tigraine.Logging
                 return renderers[type];
 
             var baseType = type.BaseType;
-            if (baseType == null) return null;
+            if (baseType == null) return defaultObjectRenderer;
             if (renderers.ContainsKey(baseType))
             {
                 var renderer = renderers[baseType];

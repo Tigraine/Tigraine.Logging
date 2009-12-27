@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="CompositeRendererTests.cs" />
     <Compile Include="LogFiltering.cs" />
+    <Compile Include="ObjectRendering.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestLogger.cs" />
   </ItemGroup>
